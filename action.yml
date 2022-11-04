@@ -1,0 +1,38 @@
+name: "Run buildifier"
+description: "Runs Bazel's lint tool buildifier"
+
+branding:
+  icon: "umbrella"
+  color: "green"
+
+inputs:
+  buildifier-version:
+    description: "Buildifier version"
+    required: false
+    default: "5.1.0"
+  path:
+    description: "Path in which to run buildifier,"
+    required: false
+    default: "."
+  recursive:
+    description: "Recursive"
+    required: false
+    default: "-r"
+  token:
+    description: Used to query buildifier releases.
+    default: ${{ github.token }}
+
+outputs:
+  success:
+    description: "Status of the buildifier check"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Setup buildifier
+      uses: jbajic/setup-buildifier@v1
+      with:
+        buildifier-version: buildifier-version
+    - run: |
+        buildifier -mode check ${{ inputs.recursive }} ${{ inputs.path }}
+      shell: bash
