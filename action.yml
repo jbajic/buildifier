@@ -31,8 +31,7 @@ runs:
   steps:
     - name: Setup buildifier
       uses: jbajic/setup-buildifier-action@v1
-      with:
-        buildifier-version: buildifier-version
+
     - run: |
         buildifier -mode check ${{ inputs.recursive }} ${{ inputs.path }}
       shell: bash
