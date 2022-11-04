@@ -30,7 +30,7 @@ runs:
   using: "composite"
   steps:
     - name: Setup buildifier
-      uses: jbajic/setup-buildifier@v1
+      uses: jbajic/setup-buildifier-action@v1
       with:
         buildifier-version: buildifier-version
     - run: |
