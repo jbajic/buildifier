@@ -17,7 +17,6 @@ Buildifier automatically checks one of the Bazel's files:
 | version  | The version of the used `buildifier` | `false`| `5.1.0` |
 | path  | The path on which to run buildifier check. | `false`| `.` |
 | mode  | The mode in which to run buildifier [check|diff] | `false`| `check` |
-| recursive  | Recursive mode | `false`| `true` |
 
 ## Example Usage
 

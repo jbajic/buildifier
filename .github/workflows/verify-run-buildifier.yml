@@ -45,3 +45,37 @@ jobs:
       - name: Verify failure
         run: exit 1
         if: steps.failed-buildifier-check.outcome == 'success'
+
+  verify-setup-buildifier-diff:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+    steps:
+      - name: Setup repository
+        uses: actions/checkout@v3
+
+      - name: Run buildifier ${{ matrix.buildifier }} on formatted files
+        uses: ./
+        with:
+          buildifier-version: ${{ matrix.buildifier }}
+          path: tests/success
+          mode: diff
+
+      - name: Run buildifier ${{ matrix.buildifier }} on ill formatted files
+        id: failed-buildifier-check
+        uses: ./
+        with:
+          buildifier-version: ${{ matrix.buildifier }}
+          path: tests/fail
+          mode: diff
+        continue-on-error: true
+
+      - name: Verify failure
+        run: exit 0
+        if: steps.failed-buildifier-check.outcome == 'failure'
+
+      - name: Verify failure
+        run: exit 1
+        if: steps.failed-buildifier-check.outcome == 'success'

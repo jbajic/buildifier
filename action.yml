@@ -14,10 +14,10 @@ inputs:
     description: "Path in which to run buildifier,"
     required: false
     default: "."
-  recursive:
-    description: "Recursive"
+  mode:
+    description: "Mode in which to run buildifier "
     required: false
-    default: "-r"
+    default: "check"
   token:
     description: Used to query buildifier releases.
     default: ${{ github.token }}
@@ -32,6 +32,13 @@ runs:
     - name: Setup buildifier
       uses: jbajic/setup-buildifier-action@v1
 
-    - run: |
-        buildifier -mode check ${{ inputs.recursive }} ${{ inputs.path }}
+    - run: buildifier -r -mode check ${{ inputs.path }}
       shell: bash
+      if: ${{ inputs.mode == 'check'}}
+
+    - run: |
+        buildifier -r -multi_diff ${{ inputs.path }}
+        git --no-pager diff
+        git checkout .
+      shell: bash
+      if: ${{ inputs.mode != 'check' }}
