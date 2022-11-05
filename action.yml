@@ -33,12 +33,17 @@ runs:
       uses: jbajic/setup-buildifier-action@v1
 
     - run: buildifier -r -mode check ${{ inputs.path }}
+      id: buildifier-action-check
       shell: bash
-      if: ${{ inputs.mode == 'check'}}
+      if: ${{ inputs.mode == 'check' }}
 
     - run: |
         buildifier -r -multi_diff ${{ inputs.path }}
-        git --no-pager diff
+        BUILDIFIER_FILES_DIFF=$(git --no-pager diff)
         git checkout .
+        if [[ "$BUILDIFIER_FILES_DIFF" != '' ]]; then
+          echo $BUILDIFIER_FILES_DIFF
+          exit 1
+        fi
       shell: bash
       if: ${{ inputs.mode != 'check' }}
