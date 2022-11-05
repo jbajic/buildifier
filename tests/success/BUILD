@@ -1,3 +1,3 @@
 cc_binary(
-    name = "test_binary"
+    name = "test_binary",
 )
