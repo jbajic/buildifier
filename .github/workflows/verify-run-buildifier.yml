@@ -24,18 +24,18 @@ jobs:
       - name: Setup repository
         uses: actions/checkout@v3
 
-      - name: Run run-buildifier action on dir1 ${{ matrix.buildifier }}
+      - name: Run buildifier ${{ matrix.buildifier }} on formatted files
         uses: ./
         with:
           buildifier-version: ${{ matrix.buildifier }}
-          path: tests/dir1
+          path: tests/fail
 
-      - name: Run run-buildifier action on dir2 ${{ matrix.buildifier }}
+      - name: Run buildifier ${{ matrix.buildifier }} on ill formatted files
         id: failed-buildifier-check
         uses: ./
         with:
           buildifier-version: ${{ matrix.buildifier }}
-          path: tests/dir2
+          path: tests/success
         continue-on-error: true
 
       - name: Verify failure
