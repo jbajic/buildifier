@@ -28,14 +28,14 @@ jobs:
         uses: ./
         with:
           buildifier-version: ${{ matrix.buildifier }}
-          path: tests/fail
+          path: tests/success
 
       - name: Run buildifier ${{ matrix.buildifier }} on ill formatted files
         id: failed-buildifier-check
         uses: ./
         with:
           buildifier-version: ${{ matrix.buildifier }}
-          path: tests/success
+          path: tests/fail
         continue-on-error: true
 
       - name: Verify failure
