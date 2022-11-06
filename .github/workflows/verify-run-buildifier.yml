@@ -53,6 +53,11 @@ jobs:
       matrix:
         buildifier: [5.1.0, 5.0.0]
     steps:
+      - name: Set git to use CRLF
+        run: |
+          git config --global core.autocrlf false
+          git config --global core.eol lf
+
       - name: Setup repository
         uses: actions/checkout@v3
 
@@ -60,14 +65,14 @@ jobs:
         uses: ./
         with:
           buildifier-version: ${{ matrix.buildifier }}
-          path: tests/success_win
+          path: tests/success
 
       - name: Run buildifier ${{ matrix.buildifier }} on ill formatted files
         id: failed-buildifier-check
         uses: ./
         with:
           buildifier-version: ${{ matrix.buildifier }}
-          path: tests/fail_win
+          path: tests/fail
         continue-on-error: true
 
       - name: Verify failure
@@ -116,20 +121,25 @@ jobs:
   verify-setup-buildifier-diff-win:
     runs-on: windows-latest
     steps:
+      - name: Set git to use CRLF
+        run: |
+          git config --global core.autocrlf true
+          git config --global core.eol crlf
+
       - name: Setup repository
         uses: actions/checkout@v3
 
       - name: Run buildifier on formatted files
         uses: ./
         with:
-          path: tests/success_win
+          path: tests/success
           mode: diff
 
       - name: Run buildifier on ill formatted files
         id: failed-buildifier-check
         uses: ./
         with:
-          path: tests/fail_win
+          path: tests/fail
           mode: diff
         continue-on-error: true
 
