@@ -125,13 +125,6 @@ jobs:
           path: tests/success_win
           mode: diff
 
-      - name: Archive code coverage results
-        uses: actions/upload-artifact@v3
-        with:
-          name: success_win
-          path: tests/success_win/
-        if: always()
-
       - name: Run buildifier on ill formatted files
         id: failed-buildifier-check
         uses: ./

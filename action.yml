@@ -40,7 +40,7 @@ runs:
     - run: |
         buildifier -r -multi_diff ${{ inputs.path }}
         BUILDIFIER_FILES_DIFF=$(git --no-pager diff)
-        # git checkout .
+        git checkout .
         if [[ "$BUILDIFIER_FILES_DIFF" != '' ]]; then
           echo -e "$BUILDIFIER_FILES_DIFF"
           exit 1
