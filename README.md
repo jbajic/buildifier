@@ -16,7 +16,7 @@ Buildifier automatically checks one of the Bazel's files:
 | --- | --- | --- | --- |
 | version  | The version of the used `buildifier` | `false`| `5.1.0` |
 | path  | The path on which to run buildifier check. | `false`| `.` |
-| mode  | The mode in which to run buildifier [check|diff] | `false`| `check` |
+| mode  | The mode in which to run buildifier [check|diff] | `check` |
 
 ## Example Usage
 
@@ -71,6 +71,10 @@ jobs:
         path: src
         mode: diff
 ```
+
+To print out the diff two steps will be performed:
+ 1. Run buildifier in `multi_diff` mode,
+ 2. Run `git diff` and print out the changes.
 
 ## License
 
