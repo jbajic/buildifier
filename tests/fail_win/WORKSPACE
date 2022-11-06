@@ -1,5 +1,5 @@
 new_local_repository(
-    name ="piano",
+    name = "piano",
     path = "/home/username/Downloads/piano.jar",
-    build_file = "BUILD.piano"
+    build_file="BUILD.piano",
 )

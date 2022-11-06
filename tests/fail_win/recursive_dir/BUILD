@@ -1,3 +1,3 @@
-cc_library(
-    name="test_binary",
+cc_binary(
+    name = "test_binary"
 )
