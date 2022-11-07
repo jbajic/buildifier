@@ -1,6 +1,2 @@
 # Set the default behavior, in case people don't have core.autocrlf set.
 * text=auto eol=lf
-
-# Declare files that will always have CRLF line endings on checkout.
-tests/success_win/* text eol=crlf
-tests/fail_win/* text eol=crlf
