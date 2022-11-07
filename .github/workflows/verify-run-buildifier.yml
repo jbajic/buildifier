@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-latest, ubuntu-latest, windows]
+        os: [macos-latest, ubuntu-latest, windows-latest]
         buildifier: [5.1.0, 5.0.0]
     steps:
       - name: Set git to use LF
@@ -57,7 +57,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-latest, ubuntu-latest, windows]
+        os: [macos-latest, ubuntu-latest, windows-latest]
     steps:
       - name: Set git to use LF
         run: |
