@@ -2,7 +2,8 @@
 
 ![verify-run-buildifier.yml](https://github.com/jbajic/buildifier/actions/workflows/verify-run-buildifier.yml/badge.svg?event=schedule)
 
-GitHub Action for running Bazel's build tool buildifier. Works on windows, linux and macOS.
+GitHub Action for running Bazel's build tool buildifier. Works on windows, linux,
+macOS and windows.
 
 Buildifier automatically checks one of the Bazel's files:
  - `BUILD`
