@@ -9,7 +9,7 @@ inputs:
   buildifier-version:
     description: "Buildifier version"
     required: false
-    default: "5.1.0"
+    default: "6.0.0"
   path:
     description: "Path in which to run buildifier,"
     required: false
